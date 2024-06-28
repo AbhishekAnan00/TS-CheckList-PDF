@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 *{
-  font-size: x-small;
+  font-size: xx-small;
+  margin: 0;
+  padding: 0;
 }
 
