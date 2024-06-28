@@ -146,30 +146,29 @@ const Form = () => {
           id="form-container"
           className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md space-y-6"
         >
-          {/* Image Section */}
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="text-red-500 font-bold text-2xl">airtel</h1>
-            <h1 className="text-xl font-bold">
-              Tower Strengthening Check List
-            </h1>
-            <div className="flex items-center justify-center">
-              <div className="bg-red-500 w-10 h-10 text-white font-bold text-4xl flex items-center justify-center">
+          {/* Image Section  */}
+          <div className="flex flex-col">
+<nav className="flex justify-between items-center">
+            <div className="text-red-500 font-bold text-md">airtel</div>
+            <div className="text-xs font-semibold">Tower Strengthening Check List</div>
+            <div className="flex items-center">
+                <div className="bg-red-500 w-6 h-6 text-white font-semibold text-md flex items-center justify-center">
                 Q
               </div>
-              <div className="flex flex-col items-center">
-                <div>
-                <div className="flex text-center items-center">
-                <h1 className="text-sm font-semibold">quality</h1>
-                  <span>austria</span>
+                <div className="flex flex-col">
+                  <div className="flex">
+                <h1 className="text-xs font-semibold">quality</h1>
+                  <span className="text-xs">austria</span>
                 </div>
-                <h2 className="text-sm font-semibold">central asia</h2>
+                <div className="flex flex-col">
+                <h2 className="text-xs font-semibold">central asia</h2>
                 <p className="text-xs italic font-serif text-red-700 font-thin">
                   Succeed with Quality
                 </p>
                 </div>
-              </div>
-            </div>
-          </div>
+             </div>
+             </div>
+          </nav>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-8">
               <div>
@@ -346,6 +345,7 @@ const Form = () => {
               </div>
             </div>
           </div>
+          </div>
 
           {/* Section 1 */}
           <table className="w-full border-collapse border border-gray-400">
@@ -373,27 +373,30 @@ const Form = () => {
                   fabrication material and existing tower
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="deviationAtConnection"
                       value="Yes"
                       checked={formData.deviationAtConnection === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
                     <span className="ml-2">Yes</span>
+                    </div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="deviationAtConnection"
                       value="No"
                       checked={formData.deviationAtConnection === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -401,7 +404,7 @@ const Form = () => {
                     name="remarks1"
                     value={formData.remarks1}
                     onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                    className="mt-1 block w-full h-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
               </tr>
@@ -417,7 +420,7 @@ const Form = () => {
                     name="Describehowitwasresolved"
                     value={formData.Describehowitwasresolved}
                     onChange={handleChange}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                    className="mt-1 block w-full h-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
                 <td>
@@ -429,39 +432,64 @@ const Form = () => {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
+              </tr>             
+            </tbody>
+          </table>
+
+          {/* section 3 */}
+          <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="border border-gray-300 p-2 font-bold"
+                >
+                  I Strengthening Activity
+                </td>
               </tr>
               <tr>
+                <th className="border border-gray-300 p-2">#</th>
+                <th className="border border-gray-300 p-2">Item</th>
+                <th className="border border-gray-300 p-2">Observation</th>
+                <th className="border border-gray-300 p-2">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+                
                 <td className="border border-gray-300 p-2">2</td>
                 <td className="border border-gray-300 p-2">
                   All strenghtening componets installed as per drawing without
                   any fitment concern
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="componentsInstalledAsPerDrawing"
                       value="Yes"
                       checked={
                         formData.componentsInstalledAsPerDrawing === "Yes"
                       }
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="componentsInstalledAsPerDrawing"
                       value="No"
                       checked={
                         formData.componentsInstalledAsPerDrawing === "No"
                       }
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -473,150 +501,36 @@ const Form = () => {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
-              </tr>
-
-              {/* {formData.componentsInstalledAsPerDrawing === "No" && ( */}
-                <tr>
-                  <td className="border border-gray-300 p-2">2.1</td>
-                  <td className="border border-gray-300 p-2">
-                    If Yes to #2 above. Describe with the problem was faced &
-                    how it was resolved ( with photos)
-                  </td>
-                  <td>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Problem Faced:
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Supplied material not as per Drawing"
-                        checked={formData.problemFacedOptions.includes(
-                          "Supplied material not as per Drawing"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">
-                        A) Supplied material not as per Drawing
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Deviation in drg. And site tower dimensions"
-                        checked={formData.problemFacedOptions.includes(
-                          "Deviation in drg. And site tower dimensions"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">
-                        B) Deviation in drg. And site tower dimensions
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Site cond. Not as per drg. (members bent/ distorted)"
-                        checked={formData.problemFacedOptions.includes(
-                          "Site cond. Not as per drg. (members bent/ distorted)"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">
-                        C) Site cond. Not as per drg. (members bent/ distorted)
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Shortfall of supplied material"
-                        checked={formData.problemFacedOptions.includes(
-                          "Shortfall of supplied material"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">
-                        D) Shortfall of supplied material
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Bolts dia. Or size mismatch"
-                        checked={formData.problemFacedOptions.includes(
-                          "Bolts dia. Or size mismatch"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">
-                        E) Bolts dia. Or size mismatch
-                      </span>
-                    </label>
-                    <label className="inline-flex items-center">
-                      <input
-                        type="checkbox"
-                        name="problemFacedOptions"
-                        value="Others"
-                        checked={formData.problemFacedOptions.includes(
-                          "Others"
-                        )}
-                        onChange={handleCheckboxChange}
-                        className="form-checkbox"
-                      />
-                      <span className="ml-2">F) Others</span>
-                    </label>
-                  </td>
-                  <td>
-                    <label className="block text-sm font-medium text-gray-700 mt-4">
-                      Describe how the problem was resolved
-                    </label>
-                    <textarea
-                    rows={6}
-                      name="problemResolvedDetails"
-                      value={formData.problemResolvedDetails}
-                      onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-                    />
-                  </td>
-                </tr>
-              {/* )} */}
-
+              </tr>            
               <tr>
                 <td className="border border-gray-300 p-2">3</td>
                 <td className="border border-gray-300 p-2">
                   Any Missing Members in the existing tower
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AnyMissingMembers"
                       value="Yes"
                       checked={formData.AnyMissingMembers === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AnyMissingMembers"
                       value="No"
                       checked={formData.AnyMissingMembers === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -628,7 +542,173 @@ const Form = () => {
                   />
                 </td>
               </tr>
+              </tbody>
+              </table>
+              <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="border border-gray-300 p-2 font-bold"
+                >
+                  I Strengthening Activity
+                </td>
+              </tr>
+              <tr>
+                <th className="border border-gray-300 p-2">#</th>
+                <th className="border border-gray-300 p-2">Item</th>
+                <th className="border border-gray-300 p-2">Observation</th>
+                <th className="border border-gray-300 p-2">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+ {/* {formData.componentsInstalledAsPerDrawing === "No" && ( */}
+ <tr>
+ <td className="border border-gray-300 p-2">2.1</td>
+ <td className="border border-gray-300 p-2">
+   If Yes to #2 above. Describe with the problem was faced &
+   how it was resolved ( with photos)
+ </td>
+ <td>
+   <label className="block text-sm font-medium text-gray-700">
+     Problem Faced:
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+     <div className="flex">
+     <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Supplied material not as per Drawing"
+       checked={formData.problemFacedOptions.includes(
+         "Supplied material not as per Drawing"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">
+       A) Supplied material not as per Drawing
+     </span>
+     </div>
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+    <div className="flex">
+    <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Deviation in drg. And site tower dimensions"
+       checked={formData.problemFacedOptions.includes(
+         "Deviation in drg. And site tower dimensions"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">
+       B) Deviation in drg. And site tower dimensions
+     </span>
+    </div>
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+     <div className="flex">
+     <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Site cond. Not as per drg. (members bent/ distorted)"
+       checked={formData.problemFacedOptions.includes(
+         "Site cond. Not as per drg. (members bent/ distorted)"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">
+       C) Site cond. Not as per drg. (members bent/ distorted)
+     </span>
+     </div>
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+    <div className="flex">
+    <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Shortfall of supplied material"
+       checked={formData.problemFacedOptions.includes(
+         "Shortfall of supplied material"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">
+       D) Shortfall of supplied material
+     </span>
+    </div>
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+    <div className="flex">
+    <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Bolts dia. Or size mismatch"
+       checked={formData.problemFacedOptions.includes(
+         "Bolts dia. Or size mismatch"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">
+       E) Bolts dia. Or size mismatch
+     </span>
+    </div>
+   </label>
+   <label className="grid grid-cols-1 items-center justify-center">
+    <div className="flex">
+    <input
+       type="checkbox"
+       name="problemFacedOptions"
+       value="Others"
+       checked={formData.problemFacedOptions.includes(
+         "Others"
+       )}
+       onChange={handleCheckboxChange}
+       className="form-checkbox"
+     />
+     <span className="ml-2">F) Others</span>
+    </div>
+   </label>
+ </td>
+ <td>
+   <label className="block text-sm font-medium text-gray-700 mt-4">
+     Describe how the problem was resolved
+   </label>
+   <textarea
+   rows={10}
+     name="problemResolvedDetails"
+     value={formData.problemResolvedDetails}
+     onChange={handleChange}
+     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+   />
+ </td>
+</tr>
+{/* )} */}
 
+            </tbody>
+            </table>
+              <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="border border-gray-300 p-2 font-bold"
+                >
+                  I Strengthening Activity
+                </td>
+              </tr>
+              <tr>
+                <th className="border border-gray-300 p-2">#</th>
+                <th className="border border-gray-300 p-2">Item</th>
+                <th className="border border-gray-300 p-2">Observation</th>
+                <th className="border border-gray-300 p-2">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td className="border border-gray-300 p-2">3.1</td>
                 <td className="border border-gray-300 p-2">
@@ -644,47 +724,45 @@ const Form = () => {
                   />
                 </td>
                 <td>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="flex flex-col items-center justify-center">
+                    <div className="flex justify-center items-center">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="MemberDetailsAreRequired"
                       value="No"
                       checked={formData.MemberDetailsAreRequired === "N/A"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
                     <span className="ml-2">N/A</span>
+                    </div>
                   </label>
                 </td>
               </tr>
-            </tbody>
-          </table>
-
-          {/* section 3 */}
-          <table className="w-full border-collapse border border-gray-400">
-            <tbody>
               <tr>
                 <td className="border border-gray-300 p-2">4</td>
                 <td className="border border-gray-300 p-2">
                   Any missing / replaced bolts in the existing tower
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="ReplacedBoltsExitingTower"
                       value="Yes But Fixed"
                       checked={
                         formData.ReplacedBoltsExitingTower === "Yes But Fixed"
                       }
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes But Fixed</span>
+                    <span className="ml-2">Yes But Fixed</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                  <div clssName="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="ReplacedBoltsExitingTower"
                       value="No Partially Fixed"
                       checked={
@@ -692,9 +770,9 @@ const Form = () => {
                         "No Partially Fixed"
                       }
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No Partially Fixed</span>
+                    <span className="ml-2">No Partially Fixed</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -716,6 +794,7 @@ const Form = () => {
 
                 <td>
                   <textarea
+                    rows={4}
                     name="GivenDetailsOfNos"
                     value={formData.GivenDetailsOfNos}
                     onChange={handleChange}
@@ -723,16 +802,18 @@ const Form = () => {
                   />
                 </td>
                 <td>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex justify-center items-center">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GivenDetailsOfNos"
                       value="No"
                       checked={formData.GivenDetailsOfNos === "N/A"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
                     <span className="ml-2">N/A</span>
+                    </div>
                   </label>
                 </td>
               </tr>
@@ -744,6 +825,7 @@ const Form = () => {
                 </td>
                 <td>
                   <textarea
+                    rows={4}
                     name="PartiallyFixed"
                     value={formData.PartiallyFixed}
                     onChange={handleChange}
@@ -751,16 +833,18 @@ const Form = () => {
                   />
                 </td>
                 <td>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex justify-center items-center">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="PartiallyFixed"
                       value="No"
                       checked={formData.PartiallyFixed === "N/A"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
                     <span className="ml-2">N/A</span>
+                    </div>
                   </label>
                 </td>
               </tr>
@@ -772,6 +856,7 @@ const Form = () => {
                 </td>
                 <td>
                   <textarea
+                    rows={4}
                     name="SpecifyLocation"
                     value={formData.SpecifyLocation}
                     onChange={handleChange}
@@ -779,20 +864,41 @@ const Form = () => {
                   />
                 </td>
                 <td>
-                  <label className="inline-flex items-center ml-6">
-                    <input
-                      type="radio"
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex justify-center items-center">
+                   <input
+                      type="checkbox"
                       name="SpecifyLocation"
                       value="No"
                       checked={formData.SpecifyLocation === "N/A"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
                     <span className="ml-2">N/A</span>
+                   </div>
                   </label>
                 </td>
               </tr>
-
+              </tbody>
+              </table>
+              <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="border border-gray-300 p-2 font-bold"
+                >
+                  I Strengthening Activity
+                </td>
+              </tr>
+              <tr>
+                <th className="border border-gray-300 p-2">#</th>
+                <th className="border border-gray-300 p-2">Item</th>
+                <th className="border border-gray-300 p-2">Observation</th>
+                <th className="border border-gray-300 p-2">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td className="border border-gray-300 p-2">5</td>
                 <td className="border border-gray-300 p-2">
@@ -800,27 +906,29 @@ const Form = () => {
                   with green indents
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AllStrengtheningComp"
                       value="Yes"
                       checked={formData.AllStrengtheningComp === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AllStrengtheningComp"
                       value="No"
                       checked={formData.AllStrengtheningComp === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -839,27 +947,29 @@ const Form = () => {
                   All tower bolts existing and new fully tightened
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AllTowerBolts"
                       value="Yes"
                       checked={formData.AllTowerBolts === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="AllTowerBolts"
                       value="No"
                       checked={formData.AllTowerBolts === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -879,27 +989,29 @@ const Form = () => {
                   Torque, viz., M12 -not required, M16-200 N-m,M20-400 N-m
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="DryClamping"
                       value="Yes"
                       checked={formData.DryClamping === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="DryClamping"
                       value="No"
                       checked={formData.DryClamping === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -938,27 +1050,29 @@ const Form = () => {
                   Col' E)
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="MissingNuts"
                       value="Yes But Fixed"
                       checked={formData.MissingNuts === "Yes But Fixed"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes But Fixed</span>
+                    <span className="ml-2">Yes But Fixed</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="MissingNuts"
                       value="No Partially Fixed"
                       checked={formData.MissingNuts === "No Partially Fixed"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No Partially Fixed</span>
+                    <span className="ml-2">No Partially Fixed</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -978,29 +1092,31 @@ const Form = () => {
                   weights in Col' E)
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="MissingNutsLock"
                       value="Yes But Fixed"
                       checked={formData.MissingNutsLock === "Yes But Fixed"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes But Fixed</span>
+                    <span className="ml-2">Yes But Fixed</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="MissingNutsLock"
                       value="No Partially Fixed"
                       checked={
                         formData.MissingNutsLock === "No Partially Fixed"
                       }
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No Partially Fixed</span>
+                    <span className="ml-2">No Partially Fixed</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1019,27 +1135,29 @@ const Form = () => {
                   Less threaded foundation bolts
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="LessThreaded"
                       value="Found"
                       checked={formData.LessThreaded === "Found"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Found</span>
+                    <span className="ml-2">Found</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="LessThreaded"
                       value="Not Found"
                       checked={formData.LessThreaded === "Not Found"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Not Found</span>
+                    <span className="ml-2">Not Found</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1080,27 +1198,29 @@ const Form = () => {
                   Rusted foundation bolts
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="RustedFoundation"
                       value="Found"
                       checked={formData.RustedFoundation === "Found"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Found</span>
+                    <span className="ml-2">Found</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="RustedFoundation"
                       value="Not Found"
                       checked={formData.RustedFoundation === "Not Found"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Not Found</span>
+                    <span className="ml-2">Not Found</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1119,27 +1239,29 @@ const Form = () => {
                   Grounting underside of base plate
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GrountingUnderSide"
                       value="Yes"
                       checked={formData.GrountingUnderSide === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GrountingUnderSide"
                       value="No"
                       checked={formData.GrountingUnderSide === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1156,27 +1278,29 @@ const Form = () => {
                 <td className="border border-gray-300 p-2">13</td>
                 <td className="border border-gray-300 p-2">Flange gaps</td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="FlangeGaps"
                       value="Yes But Fixed"
                       checked={formData.FlangeGaps === "Yes But Fixed"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes But Fixed</span>
+                    <span className="ml-2">Yes But Fixed</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="FlangeGaps"
                       value="No Partially Fixed"
                       checked={formData.FlangeGaps === "No Partially Fixed"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No Partially Fixed</span>
+                    <span className="ml-2">No Partially Fixed</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1195,27 +1319,29 @@ const Form = () => {
                   Forced fittings/ Bent members observed in the original tower
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="ForcedFitting"
                       value="Yes"
                       checked={formData.ForcedFitting === "Yes"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Yes</span>
+                    <span className="ml-2">Yes</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="ForcedFitting"
                       value="No"
                       checked={formData.ForcedFitting === "No"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">No</span>
+                    <span className="ml-2">No</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1227,45 +1353,67 @@ const Form = () => {
                   />
                 </td>
               </tr>
-
+              </tbody>
+          </table>
+              <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr className="bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="border border-gray-300 p-2 font-bold"
+                >
+                  Existing Tower Health - Post Erection
+                </td>
+              </tr>
+              <tr>
+                <th className="border border-gray-300 p-2">#</th>
+                <th className="border border-gray-300 p-2">Item</th>
+                <th className="border border-gray-300 p-2">Observation</th>
+                <th className="border border-gray-300 p-2">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td className="border border-gray-300 p-2">15</td>
                 <td className="border border-gray-300 p-2">
                   Back filling at site
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="BackFilling"
                       value="Done Properly"
                       checked={formData.BackFilling === "Done Properly"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Done Properly</span>
+                    <span className="ml-2">Done Properly</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="BackFilling"
                       value="Not Done Properly"
                       checked={formData.BackFilling === "Not Done Properly"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Not Done Properly</span>
+                    <span className="ml-2">Not Done Properly</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="BackFilling"
                       value="Not Applicable"
                       checked={formData.BackFilling === "Not Applicable"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Not Applicable</span>
+                    <span className="ml-2">Not Applicable</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1284,49 +1432,53 @@ const Form = () => {
                   General feel of the tower after strengthening
                 </td>
                 <td className="border border-gray-300 p-2">
-                  <label className="inline-flex items-center">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GeneralFeel"
                       value="Good"
                       checked={formData.GeneralFeel === "Good"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Good</span>
+                    <span className="ml-2">Good</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GeneralFeel"
                       value="Poor"
                       checked={formData.GeneralFeel === "Poor"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Poor</span>
+                    <span className="ml-2">Poor</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                   <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GeneralFeel"
                       value="Average"
                       checked={formData.GeneralFeel === "Average"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Average</span>
+                    <span className="ml-2">Average</span></div>
                   </label>
-                  <label className="inline-flex items-center ml-6">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
                     <input
-                      type="radio"
+                      type="checkbox"
                       name="GeneralFeel"
                       value="Cant Say"
                       checked={formData.GeneralFeel === "Cant Say"}
                       onChange={handleChange}
-                      className="form-radio"
+                      className="form-checkbox"
                     />
-                    <span className="ml-2">Cant Say</span>
+                    <span className="ml-2">Cant Say</span></div>
                   </label>
                 </td>
                 <td className="border border-gray-300 p-2">
@@ -1361,7 +1513,7 @@ const Form = () => {
               <td className="font-semibold text-lg">Punch Points:</td>
               <td className="border border-gray-300 p-2">
                 <textarea
-                rows={20}
+                rows={16}
                   name="remarks17"
                   value={formData.remarks17}
                   onChange={handleChange}
