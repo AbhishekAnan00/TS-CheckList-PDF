@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 const Format = () => {
+  // const printRef = useRef();
   const [formData, setFormData] = useState({
     circle: "",
     siteId: "",
@@ -90,6 +91,7 @@ const Format = () => {
     setLoading(true); // Set loading to true when button is clicked
     try {
       const doc = new jsPDF("p", "mm", "a4");
+      // const input = printRef.current;
       const input = document.getElementById("form-container");
       const sections = Array.from(input.children);
 
@@ -105,9 +107,10 @@ const Format = () => {
         const imgProps = doc.getImageProperties(imgData);
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        if (yOffset + pdfHeight > pageHeight) {
+        if (yOffset + pdfHeight > pageHeight && i > 0) {
+          // Add page only if not the first section and yOffset is beyond page height
           doc.addPage();
-          yOffset = 0;
+          yOffset = 0; // Reset yOffset for the new page
         }
 
         doc.addImage(imgData, "PNG", 0, yOffset, pdfWidth, pdfHeight);
@@ -145,14 +148,14 @@ const Format = () => {
           className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md space-y-6"
         >
           {/* Image Section  */}
-          <div className="flex flex-col">
+          <div>
             <nav className="flex justify-between items-center px-2">
               <div className="text-red-500 font-bold text-lg">airtel</div>
               <div className="text-lg font-semibold">
                 Tower Strengthening Check List
               </div>
               <div className="flex items-center">
-                <div className="bg-red-500 w-8 h-8 text-white font-semibold text-lg flex items-center justify-center">
+                <div className="bg-red-500 w-8 h-8 text-white font-semibold text-xl flex items-center justify-center">
                   Q
                 </div>
                 <div className="flex flex-col">
@@ -170,185 +173,168 @@ const Format = () => {
               </div>
             </nav>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Circle
                     </label>
                     <textarea
-                      type="text"
                       name="circle"
                       value={formData.circle}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Site ID
                     </label>
                     <textarea
-                      type="text"
                       name="siteId"
                       value={formData.siteId}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Site Name
                     </label>
                     <textarea
-                      type="text"
                       name="siteName"
                       value={formData.siteName}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Date of Certificate
                     </label>
                     <textarea
-                      type="text"
                       name="dateOfCertificate"
                       value={formData.dateOfCertificate}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Date of Inspection
                     </label>
                     <textarea
-                      type="text"
                       name="dateOfInspection"
                       value={formData.dateOfInspection}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Name of RIT Audit Eng
                     </label>
                     <textarea
-                      type="text"
                       name="NameOfRITAuditEng"
                       value={formData.NameOfRITAuditEng}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Strengthening DRG No
                     </label>
                     <textarea
-                      type="text"
                       name="strengtheningDRGNo"
                       value={formData.strengtheningDRGNo}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
                 </div>
                 <div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Type of Site
                     </label>
                     <textarea
-                      type="text"
                       name="typeOfSite"
                       value={formData.typeOfSite}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Tower Height
                     </label>
                     <textarea
-                      type="text"
                       name="TowerHeight"
                       value={formData.TowerHeight}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       MTRs
                     </label>
                     <textarea
-                      type="text"
                       name="MTRs"
                       value={formData.MTRs}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Tower Conf
                     </label>
                     <textarea
-                      type="text"
                       name="towerChief"
                       value={formData.towerChief}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Contact No
                     </label>
                     <textarea
-                      type="text"
                       name="contactNo"
                       value={formData.contactNo}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       Strengthening Vendor
                     </label>
                     <textarea
-                      type="text"
                       name="strengtheningVendor"
                       value={formData.strengtheningVendor}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                  <div className="flex justify-center items-center gap-1">
+                    <label className="block text-xs font-medium text-gray-700">
                       STR Vendor Representative Name
                     </label>
                     <textarea
-                      type="text"
                       name="STRVendorRepName"
                       value={formData.STRVendorRepName}
                       onChange={handleChange}
-                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-xs outline-none"
                     />
                   </div>
                 </div>
               </div>
             </div>
-                   
-          </div>
-{/* section 1 */}
-<table className="w-full border-collapse border border-gray-400">
+            <table className="w-full border-collapse border border-gray-400">
             <thead>
               <tr className="bg-gray-200">
                 <td
@@ -366,7 +352,7 @@ const Format = () => {
               </tr>
             </thead>
             <tbody>
-            <tr>
+              <tr>
                 <td className="border border-gray-300 p-2">1</td>
                 <td className="border border-gray-300 p-2">
                   Was there any deviation at connection interface between
@@ -408,8 +394,8 @@ const Format = () => {
                     className="mt-1 block w-full h-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
-              </tr>   
-            <tr>
+              </tr>
+              <tr>
                 <td className="border border-gray-300 p-2">1.1</td>
                 <td className="border border-gray-300 p-2">
                   If Yes to #1 above. Describe how it was resolved
@@ -482,6 +468,13 @@ const Format = () => {
                   />
                 </td>
               </tr>
+              </tbody>
+          </table>
+          </div>
+
+          {/* section 1 */}
+          <table className="w-full border-collapse border border-gray-400">
+            <thead>
 
               <tr>
                 <td className="border border-gray-300 p-2">2.1</td>
@@ -649,12 +642,6 @@ const Format = () => {
                   />
                 </td>
               </tr>
-              </tbody>
-            </table> 
-{/* section 2 */}
-            <table className="w-full border-collapse border border-gray-400">
-            <thead>
-
               <tr>
                 <td className="border border-gray-300 p-2">3.1</td>
                 <td className="border border-gray-300 p-2">
@@ -766,6 +753,13 @@ const Format = () => {
                   </label>
                 </td>
               </tr>
+              </thead>
+              </table>
+          {/* section 2 */}
+          <div className="flex flex-col">
+          <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              
 
               <tr>
                 <td className="border border-gray-300 p-2">4.2</td>
@@ -829,7 +823,7 @@ const Format = () => {
                     </div>
                   </label>
                 </td>
-              </tr> 
+              </tr>
 
               <tr>
                 <td className="border border-gray-300 p-2">5</td>
@@ -916,7 +910,7 @@ const Format = () => {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
-              </tr>  
+              </tr>
 
               <tr>
                 <td className="border border-gray-300 p-2">7</td>
@@ -960,11 +954,10 @@ const Format = () => {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
                   />
                 </td>
-              </tr>                        
+              </tr>
             </thead>
-            </table>
-{/* section 3 */}
-              <table className="w-full border-collapse border border-gray-400 p-2">
+          </table>
+            <table className="w-full border-collapse border border-gray-400 p-2">
             <thead>
               <tr className="bg-gray-200">
                 <td
@@ -1072,6 +1065,11 @@ const Format = () => {
                   />
                 </td>
               </tr>
+              </tbody>
+          </table>
+          </div>
+          <table className="w-full border-collapse border border-gray-400">
+          <thead>
               <tr>
                 <td className="border border-gray-300 p-2">10</td>
                 <td className="border border-gray-300 p-2">
@@ -1117,339 +1115,332 @@ const Format = () => {
               </tr>
 
               <tr>
-      <td className="border border-gray-300 p-2">11</td>
-      <td className="border border-gray-300 p-2">
-        Rusted foundation bolts
-      </td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="RustedFoundation"
-              value="Found"
-              checked={formData.RustedFoundation === "Found"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Found</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="RustedFoundation"
-              value="Not Found"
-              checked={formData.RustedFoundation === "Not Found"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Not Found</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks11"
-          value={formData.remarks11}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-        />
-      </td>
-    </tr>
+                <td className="border border-gray-300 p-2">11</td>
+                <td className="border border-gray-300 p-2">
+                  Rusted foundation bolts
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="RustedFoundation"
+                        value="Found"
+                        checked={formData.RustedFoundation === "Found"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">Found</span>
+                    </div>
+                  </label>
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="RustedFoundation"
+                        value="Not Found"
+                        checked={formData.RustedFoundation === "Not Found"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">Not Found</span>
+                    </div>
+                  </label>
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <textarea
+                    name="remarks11"
+                    value={formData.remarks11}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                  />
+                </td>
+              </tr>
 
-    <tr>
-      <td className="border border-gray-300 p-2">12</td>
-      <td className="border border-gray-300 p-2">
-        Grounting underside of base plate
-      </td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GrountingUnderSide"
-              value="Yes"
-              checked={formData.GrountingUnderSide === "Yes"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Yes</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GrountingUnderSide"
-              value="No"
-              checked={formData.GrountingUnderSide === "No"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">No</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks12"
-          value={formData.remarks12}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-        />
-      </td>
-    </tr>
+              <tr>
+                <td className="border border-gray-300 p-2">12</td>
+                <td className="border border-gray-300 p-2">
+                  Grounting underside of base plate
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="GrountingUnderSide"
+                        value="Yes"
+                        checked={formData.GrountingUnderSide === "Yes"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">Yes</span>
+                    </div>
+                  </label>
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="GrountingUnderSide"
+                        value="No"
+                        checked={formData.GrountingUnderSide === "No"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">No</span>
+                    </div>
+                  </label>
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <textarea
+                    name="remarks12"
+                    value={formData.remarks12}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                  />
+                </td>
+              </tr>
 
-    <tr>
-      <td className="border border-gray-300 p-2">13</td>
-      <td className="border border-gray-300 p-2">Flange gaps</td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="FlangeGaps"
-              value="Yes But Fixed"
-              checked={formData.FlangeGaps === "Yes But Fixed"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Yes But Fixed</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="FlangeGaps"
-              value="No Partially Fixed"
-              checked={formData.FlangeGaps === "No Partially Fixed"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">No Partially Fixed</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks13"
-          value={formData.remarks13}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-smoutline-none"
-        />
-      </td>
-    </tr>
+              <tr>
+                <td className="border border-gray-300 p-2">13</td>
+                <td className="border border-gray-300 p-2">Flange gaps</td>
+                <td className="border border-gray-300 p-2">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="FlangeGaps"
+                        value="Yes But Fixed"
+                        checked={formData.FlangeGaps === "Yes But Fixed"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">Yes But Fixed</span>
+                    </div>
+                  </label>
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="FlangeGaps"
+                        value="No Partially Fixed"
+                        checked={formData.FlangeGaps === "No Partially Fixed"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">No Partially Fixed</span>
+                    </div>
+                  </label>
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <textarea
+                    name="remarks13"
+                    value={formData.remarks13}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-smoutline-none"
+                  />
+                </td>
+              </tr>
 
-    <tr>
-      <td className="border border-gray-300 p-2">14</td>
-      <td className="border border-gray-300 p-2">
-        Forced fittings/ Bent members observed in the original tower
-      </td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="ForcedFitting"
-              value="Yes"
-              checked={formData.ForcedFitting === "Yes"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Yes</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="ForcedFitting"
-              value="No"
-              checked={formData.ForcedFitting === "No"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">No</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks14"
-          value={formData.remarks14}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-        />
-      </td>
-    </tr>             
-            </tbody>
-            </table>
-{/* section 4 */}
-<div  className="flex flex-col">
-<table className="w-full border-collapse border border-gray-400">
-  <thead>
-
-
-    <tr>
-      <td className="border border-gray-300 p-2">15</td>
-      <td className="border border-gray-300 p-2">
-        Back filling at site
-      </td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="BackFilling"
-              value="Done Properly"
-              checked={formData.BackFilling === "Done Properly"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Done Properly</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="BackFilling"
-              value="Not Done Properly"
-              checked={formData.BackFilling === "Not Done Properly"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Not Done Properly</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="BackFilling"
-              value="Not Applicable"
-              checked={formData.BackFilling === "Not Applicable"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Not Applicable</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks15"
-          value={formData.remarks15}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-        />
-      </td>
-    </tr>
-
-    <tr>
-      <td className="border border-gray-300 p-2">16</td>
-      <td className="border border-gray-300 p-2">
-        General feel of the tower after strengthening
-      </td>
-      <td className="border border-gray-300 p-2">
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GeneralFeel"
-              value="Good"
-              checked={formData.GeneralFeel === "Good"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Good</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GeneralFeel"
-              value="Poor"
-              checked={formData.GeneralFeel === "Poor"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Poor</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GeneralFeel"
-              value="Average"
-              checked={formData.GeneralFeel === "Average"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Average</span>
-          </div>
-        </label>
-        <label className="grid grid-cols-1 items-center justify-center">
-          <div className="flex">
-            <input
-              type="checkbox"
-              name="GeneralFeel"
-              value="Cant Say"
-              checked={formData.GeneralFeel === "Cant Say"}
-              onChange={handleChange}
-              className="form-checkbox"
-            />
-            <span className="ml-2">Cant Say</span>
-          </div>
-        </label>
-      </td>
-      <td className="border border-gray-300 p-2">
-        <textarea
-          name="remarks16"
-          value={formData.remarks16}
-          onChange={handleChange}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-        />
-      </td>
-    </tr>                                                    
-  </thead>
-</table>
-
- {/* section 5 */}
- <table className="w-full border-collapse border border-gray-400">
-            <thead>
-              <tr className="bg-gray-200">
-                <td
-                  colSpan="5"
-                  className="border border-gray-300 p-2 font-bold"
-                >
-                  Additional Work done at site
+              <tr>
+                <td className="border border-gray-300 p-2">14</td>
+                <td className="border border-gray-300 p-2">
+                  Forced fittings/ Bent members observed in the original tower
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="ForcedFitting"
+                        value="Yes"
+                        checked={formData.ForcedFitting === "Yes"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">Yes</span>
+                    </div>
+                  </label>
+                  <label className="grid grid-cols-1 items-center justify-center">
+                    <div className="flex">
+                      <input
+                        type="checkbox"
+                        name="ForcedFitting"
+                        value="No"
+                        checked={formData.ForcedFitting === "No"}
+                        onChange={handleChange}
+                        className="form-checkbox"
+                      />
+                      <span className="ml-2">No</span>
+                    </div>
+                  </label>
+                </td>
+                <td className="border border-gray-300 p-2">
+                  <textarea
+                    name="remarks14"
+                    value={formData.remarks14}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                  />
                 </td>
               </tr>
               <tr>
-                <th className="border border-gray-300 p-2">III</th>
-                <th className="border border-gray-300 p-2">
-                  Describe the additional work done details.
-                </th>
-              </tr>
-              <td className="font-semibold text-lg">Punch Points:</td>
-              <td className="border border-gray-300 p-2">
-                <textarea
-                  rows={16}
-                  name="remarks17"
-                  value={formData.remarks17}
-                  onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
-                />
-              </td>
-            </thead>
-          </table>
-</div>
+                  <td className="border border-gray-300 p-2">15</td>
+                  <td className="border border-gray-300 p-2">
+                    Back filling at site
+                  </td>
+                  <td className="border border-gray-300 p-2">
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="BackFilling"
+                          value="Done Properly"
+                          checked={formData.BackFilling === "Done Properly"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Done Properly</span>
+                      </div>
+                    </label>
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="BackFilling"
+                          value="Not Done Properly"
+                          checked={formData.BackFilling === "Not Done Properly"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Not Done Properly</span>
+                      </div>
+                    </label>
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="BackFilling"
+                          value="Not Applicable"
+                          checked={formData.BackFilling === "Not Applicable"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Not Applicable</span>
+                      </div>
+                    </label>
+                  </td>
+                  <td className="border border-gray-300 p-2">
+                    <textarea
+                      name="remarks15"
+                      value={formData.remarks15}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="border border-gray-300 p-2">16</td>
+                  <td className="border border-gray-300 p-2">
+                    General feel of the tower after strengthening
+                  </td>
+                  <td className="border border-gray-300 p-2">
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="GeneralFeel"
+                          value="Good"
+                          checked={formData.GeneralFeel === "Good"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Good</span>
+                      </div>
+                    </label>
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="GeneralFeel"
+                          value="Poor"
+                          checked={formData.GeneralFeel === "Poor"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Poor</span>
+                      </div>
+                    </label>
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="GeneralFeel"
+                          value="Average"
+                          checked={formData.GeneralFeel === "Average"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Average</span>
+                      </div>
+                    </label>
+                    <label className="grid grid-cols-1 items-center justify-center">
+                      <div className="flex">
+                        <input
+                          type="checkbox"
+                          name="GeneralFeel"
+                          value="Cant Say"
+                          checked={formData.GeneralFeel === "Cant Say"}
+                          onChange={handleChange}
+                          className="form-checkbox"
+                        />
+                        <span className="ml-2">Cant Say</span>
+                      </div>
+                    </label>
+                  </td>
+                  <td className="border border-gray-300 p-2">
+                    <textarea
+                      name="remarks16"
+                      value={formData.remarks16}
+                      onChange={handleChange}
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                    />
+                  </td>
+                </tr>
+                </thead>
+                </table>
+
+{/* section 5 */}
+          <div className="flex flex-col">
+            <table className="w-full border-collapse border border-gray-400">
+              <thead>
+                <tr className="bg-gray-200">
+                  <td
+                    colSpan="5"
+                    className="border border-gray-300 p-2 font-bold"
+                  >
+                    Additional Work done at site
+                  </td>
+                </tr>
+                <tr>
+                  <th className="border border-gray-300 p-2">III</th>
+                  <th className="border border-gray-300 p-2">
+                    Describe the additional work done details.
+                  </th>
+                </tr>
+                <td className="font-semibold text-lg">Punch Points:</td>
+                <td className="border border-gray-300 p-2">
+                  <textarea
+                    rows={20}
+                    name="remarks17"
+                    value={formData.remarks17}
+                    onChange={handleChange}
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm outline-none"
+                  />
+                </td>
+              </thead>
+            </table>
+          </div>
         </div>
 
         <div className="mt-6 flex justify-center">
@@ -1467,10 +1458,6 @@ const Format = () => {
               "Generate PDF"
             )}
           </button>
-
-
-
-
         </div>
       </form>
     </div>
